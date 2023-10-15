@@ -1,0 +1,29 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: Install required dependencies
+      ansible.builtin.package:
+        state: present
+        name:
+          - sudo
+
+    - name: Create groups
+      ansible.builtin.group:
+        name: "{{ item.name }}"
+        state: present
+      loop:
+        - name: test
+
+    - name: Create users
+      ansible.builtin.user:
+        state: present
+        name: "{{ item.name }}"
+        groups: "{{ item.groups | default(omit) }}"
+        password: "{{ 'test' | password_hash('sha512') }}"
+      loop:
+        - name: test1
+          groups: test
+        - name: test2
+        - name: test3
+        - name: postgres

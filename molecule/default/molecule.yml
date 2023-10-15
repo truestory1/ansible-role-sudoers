@@ -1,0 +1,19 @@
+---
+lint: |
+  set -e
+  yamllint .
+  ansible-lint -f full
+dependency:
+  name: galaxy
+driver:
+  name: containers
+platforms:
+  - name: sudoers
+    image: rockylinux/rockylinux:8
+    pre_build_image: false
+    privileged: true
+    command: "/sbin/init"
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

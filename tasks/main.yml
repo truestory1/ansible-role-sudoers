@@ -1,0 +1,13 @@
+---
+- name: Deploy sudoers
+  community.general.sudoers:
+    name: "{{ item.user is defined | ternary(item.user, item.group) | replace('.', '-') }}" # sudoers.d filename must be dot-free
+    user: "{{ item.user | default(omit) }}"
+    group: "{{ item.group | default(omit) }}"
+    nopassword: "{{ item.nopassword | default(omit) }}"
+    host: "{{ item.host | default('ALL') }}"
+    runas: "{{ item.runas | default(omit) }}"
+    commands: "{{ item.commands | default('ALL') }}"
+    state: "{{ item.state | default('present') }}"
+    validation: "{{ item.validation | default('required') }}"
+  loop: "{{ sudoers }}"

@@ -1,0 +1,27 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: false
+  vars:
+    commands_test01: &commands_test01
+      - /bin/id
+      - /bin/ls
+    commands_test02: &commands_test02
+      - /bin/id
+      - /bin/whoami
+    sudoers:
+      - group: test
+        runas: postgres
+        commands: *commands_test01
+      - user: test2
+        commands: *commands_test01
+      - user: test3
+      - user: test5
+        nopassword: false
+        commands: *commands_test01
+      - user: test6
+        commands: *commands_test02
+  tasks:
+    - name: Start the role
+      ansible.builtin.include_role:
+        name: ansible-role-sudoers
