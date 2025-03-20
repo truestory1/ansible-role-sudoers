@@ -1,5 +1,7 @@
 # Ansible Role: Sudoers
 
+[![Molecule](https://github.com/truestory1/ansible-role-sudoers/actions/workflows/molecule.yml/badge.svg)](https://github.com/truestory1/ansible-role-sudoers/actions/workflows/molecule.yml)
+
 ## Description
 
 This Ansible role provides a straightforward way to manage and configure the sudoers file on your target hosts. It allows you to define user- and group-based sudo privileges, ensuring consistent and secure management of sudo rights across your infrastructure.
