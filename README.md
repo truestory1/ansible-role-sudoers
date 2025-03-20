@@ -1,7 +1,5 @@
 # Ansible Role: Sudoers
 
-[![Ansible Role](https://img.shields.io/ansible/role/d/12345)](https://galaxy.ansible.com/truestory1/sudoers)
-
 ## Description
 
 This Ansible role provides a straightforward way to manage and configure the sudoers file on your target hosts. It allows you to define user- and group-based sudo privileges, ensuring consistent and secure management of sudo rights across your infrastructure.
